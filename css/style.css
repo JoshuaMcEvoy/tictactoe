@@ -87,11 +87,29 @@ body {
   border-top: solid 8px #5491BF;
 }
 
+#winnerXButton {
+  background-color: #5491BF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #F2EBD3;
+  display: inline-block;
+  border: none;
+  height: 34px;
+  min-width: 150px;
+  padding: 0 26px 34px 26px;
+  vertical-align: middle;
+  border-radius: 24px;
+  line-height: 36px;
+  text-align: center;
+  /*box-sizing: border-box;*/
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .container {
   max-width: 587px;
   min-height: 458px;
   margin: 0 auto;
-  /*background-color: #70C2FF;*/
 }
 
 .cross {
@@ -123,34 +141,35 @@ body {
   min-width: 100%;
   min-height: 72px;
   background-color: #F5F5F5;
-  /*margin: 0 auto;*/
   display: inline-block;
 }
 
 .square {
-  /*border: solid 1px black;*/
   width: 100px;
   height: 100px;
   position: relative;
-  /*margin: 10px;*/
 }
 
+.winnerScreenX {
+  display: none;
+  background-color: white;
+  min-width: 400px;
+  min-height: 291px;
+  position: fixed;
+  top: 100px;
+  margin-left: 84px;
+  box-shadow: 0px 0px 10px 0px #545454
+}
 
-
-
-
-
-
+/*//////////////////////////////////////*/
 /*start of cross icon*/
 #crossIcon {
   width: 100px;
   height: 100px;
-  /*visibility: hidden;*/
   position: relative;
-  /*margin: 0px auto;*/
-  /*cursor: pointer;*/
 }
 
+/*first span*/
 #crossIcon span:nth-child(1) {
   display: block;
   position: absolute;
@@ -203,6 +222,8 @@ body {
   }
 }
 
+
+/*second span*/
 #crossIcon span:nth-child(2) {
   display: block;
   position: absolute;
@@ -256,7 +277,7 @@ body {
 }
 
 
-#crossIcon.expand span:nth-child(1){
+/*#crossIcon.expand span:nth-child(1){
   -webkit-animation-delay: 0.3s;
   -moz-animation-delay: 0.3s;
   -webkit-transform: rotate(225deg);
@@ -272,33 +293,33 @@ body {
   -moz-transform: rotate(-225deg);
   -o-transform: rotate(-225deg);
   transform: rotate(-225deg);
-}
-
-
+}*/
 /*end of cross icon*/
+/*///////////////////////////////////////*/
 
+
+/*///////////////////////////////////////*/
 /*start of circle icon*/
 .wrap{
-  /*margin: 100px auto;*/
   width: 100px;
-  /*height: 100px;*/
 }
 
 .circle{
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
+  margin-top: 30px;
+  margin-left: 27px;
   border-radius: 100%;
   box-shadow: 0 0 0 9px #545454;
-}
-
-.circle.flash{
-  animation: circle .8s ease 1 forwards;
+  -webkit-animation-name: flash;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
 }
 
 /*#F2EBD3;*/
 
-@keyframes circle{
+@keyframes flash{
   25% {
     box-shadow: 0 0 0 6px #545454;
   }
@@ -312,3 +333,5 @@ body {
     box-shadow: 0 0 0 9px #545454;
   }
 }
+/*end of circle icon*/
+/*/////////////////////////////////////////*/

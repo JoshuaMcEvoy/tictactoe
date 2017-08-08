@@ -4,6 +4,18 @@ const gameLogic = {
   playerTwo: false,
   playerOneScore: 0,
   playerTwoScore: 0,
+  movesCount: 0,
+
+  updateScore: function(){
+    if (!gameLogic.playerOne){
+      gameLogic.playerOneScore += 1;
+      $('#playerOneScoreLabel').html(gameLogic.playerOneScore);
+    }
+    else {
+      gameLogic.playerTwoScore += 1;
+      $('#playerTwoScoreLabel').html(gameLogic.playerTwoScore);
+    }
+  },
 
   resetBoard: function (){
     //removes classes of cross and naught from all divs
@@ -24,6 +36,8 @@ const gameLogic = {
     $('#squareEight').empty();
 
     $('#squareNine').empty();
+
+    gameLogic.playerOne = true;
   },
 
   resetPlayerOne: function (){
@@ -36,147 +50,156 @@ const gameLogic = {
     gameLogic.playerTwo = true;
   },
 
-  rowOne: function () {
+  checkRowOne: function () {
     if ($('#squareOne div').is('#crossIcon') && $('#squareTwo div').is('#crossIcon') && $('#squareThree div').is('#crossIcon')){
       console.log(`Player One Wins!`);
-      gameLogic.playerOneScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
+      // gameLogic.winnerScreen();
     }
-    else if ($('#squareOne').hasClass('naught') && $('#squareTwo').hasClass('naught') && $('#squareThree').hasClass('naught')){
+    else if ($('#squareOne div').is('.wrap') && $('#squareTwo div').is('.wrap') && $('#squareThree div').is('.wrap')){
       console.log(`Player Two Wins!`);
-      gameLogic.playerTwoScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
+      // gameLogic.winnerScreen();
     }
   },
 
-  rowTwo: function () {
+  checkRowTwo: function () {
     if ($('#squareFour div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSix div').is('#crossIcon')){
       console.log(`Player One Wins!`);
-      gameLogic.playerOneScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
-    else if ($('#squareFour').hasClass('naught') && $('#squareFive').hasClass('naught') && $('#squareSix').hasClass('naught')){
+    else if ($('#squareFour div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareSix div').is('.wrap')){
       console.log(`Player Two Wins!`);
-      gameLogic.playerTwoScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
   },
 
-  rowThree: function () {
+  checkRowThree: function () {
     if ($('#squareSeven div').is('#crossIcon') && $('#squareEight div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
       console.log(`Player One Wins!`);
-      gameLogic.playerOneScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
-    else if ($('#squareSeven').hasClass('naught') && $('#squareEight').hasClass('naught') && $('#squareNine').hasClass('naught')){
+    else if ($('#squareSeven div').is('.wrap') && $('#squareEight div').is('.wrap') && $('#squareNine div').is('.wrap')){
       console.log(`Player Two Wins!`);
-      gameLogic.playerTwoScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
   },
 
-  colOne: function () {
+  checkColOne: function () {
     if ($('#squareOne div').is('#crossIcon') && $('#squareFour div').is('#crossIcon') && $('#squareSeven div').is('#crossIcon')){
       console.log(`Player One Wins!`);
-      gameLogic.playerOneScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
-    else if ($('#squareOne').hasClass('naught') && $('#squareFour').hasClass('naught') && $('#squareSeven').hasClass('naught')){
+    else if ($('#squareOne div').is('.wrap') && $('#squareFour div').is('.wrap') && $('#squareSeven div').is('.wrap')){
       console.log(`Player Two Wins!`);
-      gameLogic.playerTwoScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
   },
 
-  colTwo: function () {
+  checkColTwo: function () {
     if ($('#squareTwo div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareEight div').is('#crossIcon')){
       console.log(`Player One Wins!`);
-      gameLogic.playerOneScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
-    else if ($('#squareTwo').hasClass('naught') && $('#squareFive').hasClass('naught') && $('#squareEight').hasClass('naught')){
+    else if ($('#squareTwo div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareEight div').is('.wrap')){
       console.log(`Player Two Wins!`);
-      gameLogic.playerTwoScore + 1;
-      gameLogic.resetBoard();
+      v
     }
   },
 
-  colThree: function () {
+  checkColThree: function () {
     if ($('#squareThree div').is('#crossIcon') && $('#squareSix div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
       console.log(`Player One Wins!`);
-      gameLogic.playerOneScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
-    else if ($('#squareThree').hasClass('naught') && $('#squareSix').hasClass('naught') && $('#squareNine').hasClass('naught')){
+    else if ($('#squareThree div').is('.wrap') && $('#squareSix div').is('.wrap') && $('#squareNine div').is('.wrap')){
       console.log(`Player Two Wins!`);
-      gameLogic.playerTwoScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
   },
 
-  diagOne : function () {
+  checkDiagOne: function () {
     if ($('#squareOne div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
       console.log(`Player One Wins!`);
-      gameLogic.playerOneScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
-    else if ($('#squareOne').hasClass('naught') && $('#squareFive').hasClass('naught') && $('#squareNine').hasClass('naught')){
+    else if ($('#squareOne div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareNine div').is('.wrap')){
       console.log(`Player Two Wins!`);
-      gameLogic.playerTwoScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
   },
 
-  diagTwo : function () {
+  checkDiagTwo: function () {
     if ($('#squareThree div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSeven div').is('#crossIcon')){
       console.log(`Player One Wins!`);
-      gameLogic.playerOneScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
-    else if ($('#squareThree').hasClass('naught') && $('#squareFive').hasClass('naught') && $('#squareSeven').hasClass('naught')){
+    else if ($('#squareThree div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareSeven div').is('.wrap')){
       console.log(`Player Two Wins!`);
-      gameLogic.playerTwoScore + 1;
+      gameLogic.updateScore();
       gameLogic.resetBoard();
     }
   },
 
   winnerCheck: function (){
     //Checks through logic to see if three matches are together
-    gameLogic.rowOne();
-    gameLogic.rowTwo();
-    gameLogic.rowThree();
-    gameLogic.colOne();
-    gameLogic.colTwo();
-    gameLogic.colThree();
-    gameLogic.diagOne();
-    gameLogic.diagTwo();
+    gameLogic.checkRowOne();
+    gameLogic.checkRowTwo();
+    gameLogic.checkRowThree();
+    gameLogic.checkColOne();
+    gameLogic.checkColTwo();
+    gameLogic.checkColThree();
+    gameLogic.checkDiagOne();
+    gameLogic.checkDiagTwo();
+    if (gameLogic.movesCount === 9){
+      //draw
+      gameLogic.resetBoard();
+      alert(`DRAW!`)
+    }
   },
 
   divClicked: function (){
-
-    console.log($(this));
+    gameLogic.movesCount += 1;
+    console.log(`gameLogic.movesCount = ${gameLogic.movesCount}`);
     // if this has a child element then log
     if ($(this)[0].childElementCount === 1){
       console.log(`already picked`);
     }
 
     else if (gameLogic.playerOne){
-      console.log(`this = ${this}`);
       let crossDiv = $('<div></div>');
       crossDiv.attr('id','crossIcon');
       let spanDiv = $('<span></span>');
       $(this).append(crossDiv);
       $(crossDiv).append(spanDiv.clone());
       $(crossDiv).append(spanDiv.clone());
-
-
-      // $(this).addClass('cross');
       gameLogic.playerOne = false;
       gameLogic.resetPlayerTwo();
       gameLogic.winnerCheck();
     }
     else {
-      $(this).addClass('naught');
+      // create divs and applies class/ids to make and animate circles
+      let circleDiv = $('<div></div>');
+      circleDiv.attr('class','wrap');
+      let spanDiv = $('<div></div>');
+      spanDiv.attr('class', 'circle');
+      $(this).append(circleDiv);
+      $(circleDiv).append(spanDiv.clone());
+      //changes playerTwo to false so will go back to playerOne's turn.
       gameLogic.playerTwo = false;
       gameLogic.resetPlayerOne();
       gameLogic.winnerCheck();
@@ -185,13 +208,19 @@ const gameLogic = {
 };
 
 
+
+
 $(document).ready(function () {
   //jquery here
-  $('#crossIcon').on('click', function (){
-    $(this).toggleClass('expand');
-  });
-  $('.circle').on('click', function () {
-    $(this).toggleClass('flash');
-  })
+  // $('#crossIcon').on('click', function (){
+  //   $(this).toggleClass('expand');
+  // });
+  // $('.circle').on('click', function () {
+  //   $(this).toggleClass('flash');
+  // })
+  // if (playerOne){
+  //
+  // }
+
   $('.square').on('click', gameLogic.divClicked)
 });

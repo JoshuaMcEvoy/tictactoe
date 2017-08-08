@@ -7,32 +7,23 @@ const gameLogic = {
 
   resetBoard: function (){
     //removes classes of cross and naught from all divs
-    $('#squareOne').removeClass('cross');
-    $('#squareOne').removeClass('naught');
+    $('#squareOne').empty();
 
-    $('#squareTwo').removeClass('cross');
-    $('#squareTwo').removeClass('naught');
+    $('#squareTwo').empty();
 
-    $('#squareThree').removeClass('cross');
-    $('#squareThree').removeClass('naught');
+    $('#squareThree').empty();
 
-    $('#squareFour').removeClass('cross');
-    $('#squareFour').removeClass('naught');
+    $('#squareFour').empty();
 
-    $('#squareFive').removeClass('cross');
-    $('#squareFive').removeClass('naught');
+    $('#squareFive').empty();
 
-    $('#squareSix').removeClass('cross');
-    $('#squareSix').removeClass('naught');
+    $('#squareSix').empty();
 
-    $('#squareSeven').removeClass('cross');
-    $('#squareSeven').removeClass('naught');
+    $('#squareSeven').empty();
 
-    $('#squareEight').removeClass('cross');
-    $('#squareEight').removeClass('naught');
+    $('#squareEight').empty();
 
-    $('#squareNine').removeClass('cross');
-    $('#squareNine').removeClass('naught');
+    $('#squareNine').empty();
   },
 
   resetPlayerOne: function (){

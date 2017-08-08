@@ -13,13 +13,13 @@
   <div class="container">
     <div class="scoreContainer">
       <div class="score" id="scoreContainerPlayerOne">
-        <div>X:</div>
-        <div id="playerOneScoreLabel">0</div>
+        <div class="scoreLabel">X:</div>
+        <div class="scoreLabel" id="playerOneScoreLabel">0</div>
         <!-- remember to reset player one to true at end of game -->
       </div>
       <div class="score" id="scoreContainerPlayerTwo">
-        <div>O:</div>
-        <div id="playerTwoScoreLabel">0</div>
+        <div class="scoreLabel">O:</div>
+        <div class="scoreLabel" id="playerTwoScoreLabel">0</div>
       </div>
     </div>
     <div class="gameBoard">
@@ -32,10 +32,6 @@
       <div class="square" id="squareSeven"></div>
       <div class="square" id="squareEight"></div>
       <div class="square" id="squareNine"></div>
-
-      <!-- window set to hidden -->
-
-
     </div>
 
     <div class="winnerScreenX">
@@ -43,10 +39,15 @@
         <span></span>
         <span></span>
       </div>
-      <div>Wins!</div>
-      <input type="button" id="winnerXButton" value="Reset">
+      <h2>Wins!</h2>
+      <input type="button" class="button" value="Go Again!">
     </div>
 
+    <div class="scoreContainer">
+      <input type="button" class="button" id="restartButton" value="Restart">
+    </div>
+
+    <div class="strikeDiag strikeRowOne"></div>
 
     <!-- <div id="crossIcon">
       <span></span>
@@ -59,10 +60,9 @@
       </div>
     </div> -->
 
-
-    <!-- create a div with two child spans onclickDown, chenge class on click up -->
-
   </div>
+
+
 
 </body>
 </html>

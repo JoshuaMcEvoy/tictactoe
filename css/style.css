@@ -2,6 +2,13 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  color: #7D7D7D;
+  font-size: 22px;
+}
+
+#restartButton {
+  margin-top: 19px;
+  margin-left: 209px;
 }
 
 #scoreContainerPlayerOne {
@@ -15,7 +22,7 @@ body {
 #squareOne {
   position: absolute;
   top: 90px;
-  right: 699px;
+  left: 475px;
   border-right: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
 }
@@ -23,7 +30,7 @@ body {
 #squareTwo {
   position: absolute;
   top: 90px;
-  right: 591px;
+  left: 575px;
   border-left: solid 8px #5491BF;
   border-right: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
@@ -32,7 +39,7 @@ body {
 #squareThree {
   position: absolute;
   top: 90px;
-  right: 491px;
+  left: 683px;
   border-left: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
 }
@@ -40,7 +47,7 @@ body {
 #squareFour {
   position: absolute;
   top: 190px;
-  right: 699px;
+  left: 475px;
   border-top: solid 8px #5491BF;
   border-right: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
@@ -49,14 +56,14 @@ body {
 #squareFive {
   position: absolute;
   top: 190px;
-  right: 591px;
+  left: 575px;
   border: solid 8px #5491BF;
 }
 
 #squareSix {
   position: absolute;
   top: 190px;
-  right: 491px;
+  left: 683px;
   border-top: solid 8px #5491BF;
   border-left: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
@@ -65,7 +72,7 @@ body {
 #squareSeven {
   position: absolute;
   top: 298px;
-  right: 699px;
+  left: 475px;
   border-top: solid 8px #5491BF;
   border-right: solid 8px #5491BF;
 }
@@ -73,7 +80,7 @@ body {
 #squareEight {
   position: absolute;
   top: 298px;
-  right: 591px;
+  left: 575px;
   border-left: solid 8px #5491BF;
   border-top: solid 8px #5491BF;
   border-right: solid 8px #5491BF;
@@ -82,38 +89,29 @@ body {
 #squareNine {
   position: absolute;
   top: 298px;
-  right: 491px;
+  left: 683px;
   border-left: solid 8px #5491BF;
   border-top: solid 8px #5491BF;
 }
 
-#winnerXButton {
-  background-color: #5491BF;
+.button {
+  background-color: #63ABE0;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   color: #F2EBD3;
-  display: inline-block;
   border: none;
   height: 34px;
   min-width: 150px;
-  padding: 0 26px 34px 26px;
-  vertical-align: middle;
   border-radius: 24px;
-  line-height: 36px;
-  text-align: center;
-  /*box-sizing: border-box;*/
-  text-decoration: none;
+  line-height: 33px;
   cursor: pointer;
 }
 
 .container {
   max-width: 587px;
   min-height: 458px;
-  margin: 0 auto;
-}
-
-.cross {
-  background-color: red;
+  margin-left: 340px;
+  box-shadow: 0px 0px 10px 0px #7D7D7D;
 }
 
 .gameBoard {
@@ -122,8 +120,8 @@ body {
   background-color: #63ABE0;
 }
 
-.naught {
-  background-color: black;
+.highlight {
+  border-bottom: solid 5px #63ABE0;
 }
 
 .score {
@@ -144,14 +142,25 @@ body {
   display: inline-block;
 }
 
+.scoreLabel {
+  display: inline-block;
+  margin-top: 6px;
+}
+
 .square {
   width: 100px;
   height: 100px;
   position: relative;
+  cursor: pointer;
+}
+
+.square:hover{
+  /*box-shadow: inset 0px 89px 10px 0px #545454;*/
 }
 
 .winnerScreenX {
   display: none;
+  /*position: relative;*/
   background-color: white;
   min-width: 400px;
   min-height: 291px;
@@ -161,7 +170,115 @@ body {
   box-shadow: 0px 0px 10px 0px #545454
 }
 
+/*////////////////////////////////////////////*/
+/*start of line strike*/
+.strike {
+  height: 9px;
+  width: 300px;
+  position: absolute;
+  border-radius: 9px;
+  background-color: #545454;
+  -webkit-animation-name: strikeOut;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+.strikeVert {
+  height: 300px;
+  width: 9px;
+  position: absolute;
+  border-radius: 9px;
+  background-color: #545454;
+  -webkit-animation-name: strikeOutVert;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+.strikeDiag {
+  height: 9px;
+  width: 300px;
+  position: absolute;
+  border-radius: 9px;
+  background-color: #545454;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation-name: strikeOut;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+
+}
+
+.strikeRowOne {
+  top: 138px;
+  left: 482px;
+}
+
+.strikeRowTwo {
+  top: 246px;
+  left: 482px;
+}
+
+.strikeRowThree {
+  top: 354px;
+  left: 482px;
+}
+
+.strikeColOne {
+  top: 99px;
+  left: 520px;
+}
+
+.strikeColTwo {
+  top: 99px;
+  left: 629px;
+}
+
+.strikeColThree {
+  top: 99px;
+  left: 737px;
+}
+
+
+@-webkit-keyframes strikeOut {
+  0%{
+    width: 1px;
+  }
+  100%{
+    width: 300px;
+  }
+}
+
+@keyframes strikeOut {
+  0%{
+    width: 1px;
+  }
+  100%{
+    width: 300px;
+  }
+}
+
+@-webkit-keyframes strikeOutVert {
+  0%{
+    height: 1px;
+  }
+  100%{
+    height: 300px;
+  }
+}
+
+@keyframes strikeOutVert {
+  0%{
+    height: 1px;
+  }
+  100%{
+    height: 300px;
+  }
+}
+
 /*//////////////////////////////////////*/
+/*this has two sections (first and second child) for both spans as they need to be applied seperately due to different rotations*/
 /*start of cross icon*/
 #crossIcon {
   width: 100px;
@@ -179,6 +296,7 @@ body {
   width: 70px;
   background: #545454;
   border-radius: 9px;
+  /*this makes sure that the X will stay an X and not revert back to a line once rotation has finished*/
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
@@ -187,6 +305,7 @@ body {
   -moz-transition: .8s ease-in-out;
   -o-transition: .8s ease-in-out;
   transition: .8s ease-in-out;
+  /*calling keyframes expand*/
   -webkit-animation-name: expand;
   -webkit-animation-duration: 1s;
   -webkit-animation-timing-function: ease-in-out;
@@ -275,25 +394,6 @@ body {
     transform: rotate(-225deg);
   }
 }
-
-
-/*#crossIcon.expand span:nth-child(1){
-  -webkit-animation-delay: 0.3s;
-  -moz-animation-delay: 0.3s;
-  -webkit-transform: rotate(225deg);
-  -moz-transform: rotate(225deg);
-  -o-transform: rotate(225deg);
-  transform: rotate(225deg);
-}
-
-#crossIcon.expand span:nth-child(2){
-  -webkit-animation-delay: 0.3s;
-  -moz-animation-delay: 0.3s;
-  -webkit-transform: rotate(-225deg);
-  -moz-transform: rotate(-225deg);
-  -o-transform: rotate(-225deg);
-  transform: rotate(-225deg);
-}*/
 /*end of cross icon*/
 /*///////////////////////////////////////*/
 
@@ -321,6 +421,7 @@ body {
 
 @keyframes flash{
   25% {
+    /*uses box-shadow rather than border due to resizing shifts*/
     box-shadow: 0 0 0 6px #545454;
   }
   50% {

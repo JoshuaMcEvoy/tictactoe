@@ -153,10 +153,10 @@ const gameLogic = {
   },
 
   divClicked: function (){
-    if (
-      $(this).hasClass('cross') ||
-      $(this).hasClass('naught')
-      ){
+
+    console.log($(this));
+    // if this has a child element then log
+    if ($(this)[0].childElementCount === 1){
       console.log(`already picked`);
     }
 

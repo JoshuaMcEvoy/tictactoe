@@ -9,10 +9,12 @@ const gameLogic = {
   updateScore: function(){
     if (!gameLogic.playerOne){
       gameLogic.playerOneScore += 1;
+      gameLogic.movesCount = 0;
       $('#playerOneScoreLabel').html(gameLogic.playerOneScore);
     }
     else {
       gameLogic.playerTwoScore += 1;
+      gameLogic.movesCount = 0;
       $('#playerTwoScoreLabel').html(gameLogic.playerTwoScore);
     }
   },

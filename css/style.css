@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 #scoreContainerPlayerOne {
   margin-left: 98px;
@@ -127,6 +131,7 @@
   /*border: solid 1px black;*/
   width: 100px;
   height: 100px;
+  position: relative;
   /*margin: 10px;*/
 }
 
@@ -136,58 +141,176 @@
 
 
 
-
-
 /*start of cross icon*/
 #crossIcon {
-  width: 70px;
-  height: 45px;
-  visibility: hidden;
+  width: 100px;
+  height: 100px;
+  /*visibility: hidden;*/
   position: relative;
-  margin: 50px auto;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: .5s ease-in-out;
-  -moz-transition: .5s ease-in-out;
-  -o-transition: .5s ease-in-out;
-  transition: .5s ease-in-out;
-  cursor: pointer;
+  /*margin: 0px auto;*/
+  /*cursor: pointer;*/
 }
 
-#crossIcon span {
+#crossIcon span:nth-child(1) {
   display: block;
   position: absolute;
+  margin-left: 15px;
+  margin-top: 48px;
   height: 9px;
-  width: 100%;
+  width: 70px;
   background: #545454;
   border-radius: 9px;
-  opacity: 1;
-  left: 0;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
-}
-
-#crossIcon.expand span:nth-child(1){
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+  -webkit-transition: .8s ease-in-out;
+  -moz-transition: .8s ease-in-out;
+  -o-transition: .8s ease-in-out;
+  transition: .8s ease-in-out;
+  -webkit-animation-name: expand;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
 }
 
-#crossIcon.expand span:nth-child(2){
+@-webkit-keyframes expand {
+  0%{
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100%{
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    transform: rotate(225deg);
+  }
+}
+
+@keyframes expand {
+  0%{
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100%{
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    transform: rotate(225deg);
+  }
+}
+
+#crossIcon span:nth-child(2) {
+  display: block;
+  position: absolute;
+  margin-left: 15px;
+  margin-top: 48px;
+  height: 9px;
+  width: 70px;
+  background: #545454;
+  border-radius: 9px;
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
+  -webkit-transition: .8s ease-in-out;
+  -moz-transition: .8s ease-in-out;
+  -o-transition: .8s ease-in-out;
+  transition: .8s ease-in-out;
+  -webkit-animation-name: expandTwo;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
 }
+
+@-webkit-keyframes expandTwo {
+  0%{
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100%{
+    -webkit-transform: rotate(-225deg);
+    -moz-transform: rotate(-225deg);
+    -o-transform: rotate(-225deg);
+    transform: rotate(-225deg);
+  }
+}
+
+@keyframes expandTwo {
+  0%{
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100%{
+    -webkit-transform: rotate(-225deg);
+    -moz-transform: rotate(-225deg);
+    -o-transform: rotate(-225deg);
+    transform: rotate(-225deg);
+  }
+}
+
+
+#crossIcon.expand span:nth-child(1){
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
+  transform: rotate(225deg);
+}
+
+#crossIcon.expand span:nth-child(2){
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  -webkit-transform: rotate(-225deg);
+  -moz-transform: rotate(-225deg);
+  -o-transform: rotate(-225deg);
+  transform: rotate(-225deg);
+}
+
+
 /*end of cross icon*/
 
-/*circle color #F2EBD3*/
+/*start of circle icon*/
+.wrap{
+  /*margin: 100px auto;*/
+  width: 100px;
+  /*height: 100px;*/
+}
+
+.circle{
+  position: relative;
+  /*overflow: hidden;*/
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  box-shadow: 0 0 0 9px #545454;
+  /*cursor: pointer;*/
+}
+
+.circle.flash{
+  animation: circle .8s ease 1 forwards;
+}
+
+/*#F2EBD3;*/
+
+@keyframes circle{
+  25% {
+    box-shadow: 0 0 0 6px #545454;
+  }
+  50% {
+    box-shadow: 0 0 0 9px #545454;
+  }
+  75% {
+    box-shadow: 0 0 0 6px #545454;
+  }
+  100% {
+    box-shadow: 0 0 0 9px #545454;
+  }
+}

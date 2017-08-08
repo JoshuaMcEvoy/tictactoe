@@ -46,7 +46,7 @@ const gameLogic = {
   },
 
   rowOne: function () {
-    if ($('#squareOne').hasClass('cross') && $('#squareTwo').hasClass('cross') && $('#squareThree').hasClass('cross')){
+    if ($('#squareOne div').is('#crossIcon') && $('#squareTwo div').is('#crossIcon') && $('#squareThree div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.playerOneScore + 1;
       gameLogic.resetBoard();
@@ -59,7 +59,7 @@ const gameLogic = {
   },
 
   rowTwo: function () {
-    if ($('#squareFour').hasClass('cross') && $('#squareFive').hasClass('cross') && $('#squareSix').hasClass('cross')){
+    if ($('#squareFour div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSix div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.playerOneScore + 1;
       gameLogic.resetBoard();
@@ -72,7 +72,7 @@ const gameLogic = {
   },
 
   rowThree: function () {
-    if ($('#squareSeven').hasClass('cross') && $('#squareEight').hasClass('cross') && $('#squareNine').hasClass('cross')){
+    if ($('#squareSeven div').is('#crossIcon') && $('#squareEight div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.playerOneScore + 1;
       gameLogic.resetBoard();
@@ -85,7 +85,7 @@ const gameLogic = {
   },
 
   colOne: function () {
-    if ($('#squareOne').hasClass('cross') && $('#squareFour').hasClass('cross') && $('#squareSeven').hasClass('cross')){
+    if ($('#squareOne div').is('#crossIcon') && $('#squareFour div').is('#crossIcon') && $('#squareSeven div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.playerOneScore + 1;
       gameLogic.resetBoard();
@@ -98,7 +98,7 @@ const gameLogic = {
   },
 
   colTwo: function () {
-    if ($('#squareTwo').hasClass('cross') && $('#squareFive').hasClass('cross') && $('#squareEight').hasClass('cross')){
+    if ($('#squareTwo div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareEight div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.playerOneScore + 1;
       gameLogic.resetBoard();
@@ -111,7 +111,7 @@ const gameLogic = {
   },
 
   colThree: function () {
-    if ($('#squareThree').hasClass('cross') && $('#squareSix').hasClass('cross') && $('#squareNine').hasClass('cross')){
+    if ($('#squareThree div').is('#crossIcon') && $('#squareSix div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.playerOneScore + 1;
       gameLogic.resetBoard();
@@ -124,7 +124,7 @@ const gameLogic = {
   },
 
   diagOne : function () {
-    if ($('#squareOne').hasClass('cross') && $('#squareFive').hasClass('cross') && $('#squareNine').hasClass('cross')){
+    if ($('#squareOne div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.playerOneScore + 1;
       gameLogic.resetBoard();
@@ -137,7 +137,7 @@ const gameLogic = {
   },
 
   diagTwo : function () {
-    if ($('#squareThree').hasClass('cross') && $('#squareFive').hasClass('cross') && $('#squareSeven').hasClass('cross')){
+    if ($('#squareThree div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSeven div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.playerOneScore + 1;
       gameLogic.resetBoard();
@@ -170,7 +170,16 @@ const gameLogic = {
     }
 
     else if (gameLogic.playerOne){
-      $(this).addClass('cross');
+      console.log(`this = ${this}`);
+      let crossDiv = $('<div></div>');
+      crossDiv.attr('id','crossIcon');
+      let spanDiv = $('<span></span>');
+      $(this).append(crossDiv);
+      $(crossDiv).append(spanDiv.clone());
+      $(crossDiv).append(spanDiv.clone());
+
+
+      // $(this).addClass('cross');
       gameLogic.playerOne = false;
       gameLogic.resetPlayerTwo();
       gameLogic.winnerCheck();
@@ -190,5 +199,8 @@ $(document).ready(function () {
   $('#crossIcon').on('click', function (){
     $(this).toggleClass('expand');
   });
+  $('.circle').on('click', function () {
+    $(this).toggleClass('flash');
+  })
   $('.square').on('click', gameLogic.divClicked)
 });

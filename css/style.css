@@ -23,16 +23,16 @@ body {
 
 #squareOne {
   position: absolute;
-  top: 90px;
-  left: 475px;
+  top: 11px;
+  left: 128px;
   border-right: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
 }
 
 #squareTwo {
   position: absolute;
-  top: 90px;
-  left: 575px;
+  top: 11px;
+  left: 228px;
   border-left: solid 8px #5491BF;
   border-right: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
@@ -40,16 +40,16 @@ body {
 
 #squareThree {
   position: absolute;
-  top: 90px;
-  left: 683px;
+  top: 11px;
+  left: 336px;
   border-left: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
 }
 
 #squareFour {
   position: absolute;
-  top: 190px;
-  left: 475px;
+  top: 111px;
+  left: 128px;
   border-top: solid 8px #5491BF;
   border-right: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
@@ -57,15 +57,15 @@ body {
 
 #squareFive {
   position: absolute;
-  top: 190px;
-  left: 575px;
+  top: 111px;
+  left: 228px;
   border: solid 8px #5491BF;
 }
 
 #squareSix {
   position: absolute;
-  top: 190px;
-  left: 683px;
+  top: 111px;
+  left: 336px;
   border-top: solid 8px #5491BF;
   border-left: solid 8px #5491BF;
   border-bottom: solid 8px #5491BF;
@@ -73,16 +73,16 @@ body {
 
 #squareSeven {
   position: absolute;
-  top: 298px;
-  left: 475px;
+  top: 219px;
+  left: 128px;;
   border-top: solid 8px #5491BF;
   border-right: solid 8px #5491BF;
 }
 
 #squareEight {
   position: absolute;
-  top: 298px;
-  left: 575px;
+  top: 219px;
+  left: 228px;
   border-left: solid 8px #5491BF;
   border-top: solid 8px #5491BF;
   border-right: solid 8px #5491BF;
@@ -90,8 +90,8 @@ body {
 
 #squareNine {
   position: absolute;
-  top: 298px;
-  left: 683px;
+  top: 219px;
+  left: 336px;
   border-left: solid 8px #5491BF;
   border-top: solid 8px #5491BF;
 }
@@ -110,9 +110,9 @@ body {
 }
 
 .container {
-  max-width: 587px;
+  width: 587px;
   min-height: 458px;
-  margin-left: 340px;
+  margin: 0 auto;
   box-shadow: 0px 0px 10px 0px #7D7D7D;
 }
 
@@ -120,6 +120,7 @@ body {
   min-width: 400px;
   min-height: 337px;
   background-color: #63ABE0;
+  position: relative;
 }
 
 .highlight {
@@ -160,9 +161,9 @@ body {
   /*box-shadow: inset 0px 89px 10px 0px #545454;*/
 }
 
-.winnerScreenX {
+/*.winnerScreenX {
   display: none;
-  /*position: relative;*/
+  position: relative;
   background-color: white;
   min-width: 400px;
   min-height: 291px;
@@ -170,7 +171,7 @@ body {
   top: 100px;
   margin-left: 84px;
   box-shadow: 0px 0px 10px 0px #545454
-}
+}*/
 
 /*////////////////////////////////////////////*/
 /*start of line strike*/
@@ -493,6 +494,7 @@ body {
   background: rgba(0, 0, 0, 0.7);
   transition: opacity 500ms;
   visibility: hidden;
+  z-index: 1;
   opacity: 0;
 }
 /*activates layer*/
@@ -533,6 +535,17 @@ body {
   text-align: center;
 }
 
+/*center cross in div*/
+.popup #crossIcon {
+  margin-left: 23px;
+}
+
+/*center circle in div*/
+.popup .wrap {
+  margin-left: 25px;
+  margin-top: -11px;
+  margin-bottom: 15px;
+}
 
 /*end of pop up*/
 /*//////////////////////////////////////////*/

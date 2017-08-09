@@ -8,15 +8,7 @@ const gameLogic = {
 
 
   winnerScreen: function (){
-
-    if (gameLogic.moveCount === 9){
-
-      // adds # and string to the end of url to call box
-      window.location.hash='draw';
-      gameLogic.playerOne = true;
-
-    }
-    else if (!gameLogic.playerOne){
+    if (!gameLogic.playerOne){
 
       // adds # and string to the end of url to call box
       window.location.hash='winnerX';
@@ -63,6 +55,8 @@ const gameLogic = {
     $('#squareNine').empty();
 
     $('.strike').remove();
+
+    $('.strikeDiag').remove();
 
     gameLogic.playerOne = true;
   },
@@ -230,8 +224,16 @@ const gameLogic = {
 
   divClicked: function (){
     gameLogic.movesCount += 1;
+    
+    if (gameLogic.movesCount === 9){
+
+      // adds # and string to the end of url to call box
+      window.location.hash='draw';
+      gameLogic.playerOne = true;
+
+    }
     // if this has a child element then log
-    if ($(this)[0].childElementCount === 1){
+    else if ($(this)[0].childElementCount === 1){
       console.log(`already picked`);
     }
 
@@ -271,7 +273,6 @@ const gameLogic = {
 };
 
 $(document).ready(function () {
-  console.log(`$('#scoreContainerPlayerTwo') = ${$('#scoreContainerPlayerTwo')}`);
   //will alternate between players.
   $('#scoreContainerPlayerTwo').on('click', function (){
     gameLogic.playerOne = false;
@@ -306,6 +307,7 @@ $(document).ready(function () {
   else {
     $('#scoreContainerPlayerTwo').addClass('highlight');
   }
+
   //reload the whole page, resets counts and sets playerOne to true.
   $('#restartButton').on('click', function(){
     location.reload();

@@ -107,6 +107,7 @@ body {
   border-radius: 24px;
   line-height: 33px;
   cursor: pointer;
+
 }
 
 .container {
@@ -156,22 +157,6 @@ body {
   position: relative;
   cursor: pointer;
 }
-
-.square:hover{
-  /*box-shadow: inset 0px 89px 10px 0px #545454;*/
-}
-
-/*.winnerScreenX {
-  display: none;
-  position: relative;
-  background-color: white;
-  min-width: 400px;
-  min-height: 291px;
-  position: fixed;
-  top: 100px;
-  margin-left: 84px;
-  box-shadow: 0px 0px 10px 0px #545454
-}*/
 
 /*////////////////////////////////////////////*/
 /*start of line strike*/

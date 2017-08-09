@@ -4,8 +4,9 @@ const gameLogic = {
   playerTwo: false,
   playerOneScore: 0,
   playerTwoScore: 0,
-  movesCount: 0,
+  movesCount: 1,
   gameInProgress: true,
+  swooshAudio: $('#swooshAudio')[0],
 
 
   winnerScreen: function (){
@@ -241,16 +242,15 @@ const gameLogic = {
   },
 
   divClicked: function (){
+
     if (!gameLogic.gameInProgress){
       //stops user from clicking board
     }
-
     else if (gameLogic.movesCount === 9){
-
-      // adds # and string to the end of url to call box
-      window.location.hash='draw';
-      gameLogic.playerOne = true;
-      gameLogic.movesCount = 0;
+    // adds # and string to the end of url to call box
+    window.location.hash='draw';
+    gameLogic.playerOne = true;
+    gameLogic.movesCount = 0;
 
     }
     // if this has a child element then log
@@ -266,6 +266,7 @@ const gameLogic = {
       $(this).append(crossDiv);
       $(crossDiv).append(spanDiv.clone());
       $(crossDiv).append(spanDiv.clone());
+      gameLogic.swooshAudio.play();
       gameLogic.playerOne = false;
       gameLogic.resetPlayerTwo();
       gameLogic.winnerCheck();

@@ -162,12 +162,16 @@ const gameLogic = {
     if ($('#squareOne div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
-      gameLogic.resetBoard();
+      // gameLogic.resetBoard();
+      let strikeOut = $('<div class="strikeDiag strikeDiagOne"><div>')
+      $('body').append(strikeOut);
     }
     else if ($('#squareOne div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareNine div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
-      gameLogic.resetBoard();
+      // gameLogic.resetBoard();
+      let strikeOut = $('<div class="strikeDiag strikeDiagOne"><div>')
+      $('body').append(strikeOut);
     }
   },
 
@@ -175,12 +179,16 @@ const gameLogic = {
     if ($('#squareThree div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSeven div').is('#crossIcon')){
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
-      gameLogic.resetBoard();
+      // gameLogic.resetBoard();
+      let strikeOut = $('<div class="strikeDiag strikeDiagTwo"><div>')
+      $('body').append(strikeOut);
     }
     else if ($('#squareThree div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareSeven div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
-      gameLogic.resetBoard();
+      // gameLogic.resetBoard();
+      let strikeOut = $('<div class="strikeDiag strikeDiagTwo"><div>')
+      $('body').append(strikeOut);
     }
   },
 

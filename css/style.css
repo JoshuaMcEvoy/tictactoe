@@ -196,18 +196,13 @@ body {
 
 .strikeDiag {
   height: 9px;
-  width: 300px;
+  width: 370px;
   position: absolute;
   border-radius: 9px;
   background-color: #545454;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  -webkit-animation-name: strikeOut;
+  -webkit-animation-name: strikeOutDiag;
   -webkit-animation-duration: 1s;
   -webkit-animation-timing-function: ease-in-out;
-
 }
 
 .strikeRowOne {
@@ -238,6 +233,32 @@ body {
 .strikeColThree {
   top: 99px;
   left: 737px;
+}
+
+.strikeDiagOne{
+  top: 111px;
+  left: 499px;
+  width: 370px;
+  -ms-transform-origin: top left;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.strikeDiagTwo{
+  top: 378px;
+  left: 499px;
+  width: 370px
+  -ms-transform-origin: top left;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 
@@ -276,6 +297,25 @@ body {
     height: 300px;
   }
 }
+
+@-webkit-keyframes strikeOutDiag {
+  0%{
+    width: 1px;
+  }
+  100%{
+    width: 370px;
+  }
+}
+
+@keyframes strikeOutDiag {
+  0%{
+    width: 1px;
+  }
+  100%{
+    width: 370px;
+  }
+}
+
 
 /*//////////////////////////////////////*/
 /*this has two sections (first and second child) for both spans as they need to be applied seperately due to different rotations*/

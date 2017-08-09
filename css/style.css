@@ -13,10 +13,12 @@ body {
 
 #scoreContainerPlayerOne {
   margin-left: 98px;
+  cursor: pointer;
 }
 
 #scoreContainerPlayerTwo {
   margin-left: 26px;
+  cursor: pointer;
 }
 
 #squareOne {

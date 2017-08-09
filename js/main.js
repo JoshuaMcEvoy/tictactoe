@@ -13,6 +13,7 @@ const gameLogic = {
 
       // adds # and string to the end of url to call box
       window.location.hash='draw';
+      gameLogic.playerOne = true;
 
     }
     else if (!gameLogic.playerOne){
@@ -215,7 +216,7 @@ const gameLogic = {
     }
   },
 
-    winnerCheck: function (){
+  winnerCheck: function (){
     //Checks through logic to see if three matches are together
     gameLogic.checkRowOne();
     gameLogic.checkRowTwo();
@@ -270,6 +271,35 @@ const gameLogic = {
 };
 
 $(document).ready(function () {
+  console.log(`$('#scoreContainerPlayerTwo') = ${$('#scoreContainerPlayerTwo')}`);
+  //will alternate between players.
+  $('#scoreContainerPlayerTwo').on('click', function (){
+    gameLogic.playerOne = false;
+    gameLogic.playerTwo = true;
+    if (gameLogic.playerOne){
+      $('#scoreContainerPlayerOne').addClass('highlight');
+      $('#scoreContainerPlayerTwo').removeClass('highlight');
+    }
+    else {
+      $('#scoreContainerPlayerTwo').addClass('highlight');
+      $('#scoreContainerPlayerOne').removeClass('highlight');
+    }
+  });
+
+  $('#scoreContainerPlayerOne').on('click', function (){
+    gameLogic.playerOne = true;
+    gameLogic.playerTwo = false;
+    if (gameLogic.playerOne){
+      $('#scoreContainerPlayerOne').addClass('highlight');
+      $('#scoreContainerPlayerTwo').removeClass('highlight');
+    }
+    else {
+      $('#scoreContainerPlayerTwo').addClass('highlight');
+      $('#scoreContainerPlayerOne').removeClass('highlight');
+    }
+  });
+
+
   if (gameLogic.playerOne){
     $('#scoreContainerPlayerOne').addClass('highlight');
   }
@@ -284,5 +314,9 @@ $(document).ready(function () {
   })
   //watches for click on squares and runs function to determine what should be placed in square.
   $('.square').on('click', gameLogic.divClicked);
-  $('.close').on('click',gameLogic.resetBoard);
+
+  //clears board when close button on pop up is clicked.
+  $('.close').on('click', gameLogic.resetBoard);
+
+
 });

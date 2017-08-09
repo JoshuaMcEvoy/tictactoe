@@ -209,38 +209,38 @@ body {
 }
 
 .strikeRowOne {
-  top: 138px;
-  left: 482px;
+  top: 59px;
+  left: 135px;
 }
 
 .strikeRowTwo {
-  top: 246px;
-  left: 482px;
+  top: 168px;
+  left: 135px;
 }
 
 .strikeRowThree {
-  top: 354px;
-  left: 482px;
+  top: 275px;
+    left: 135px;
 }
 
 .strikeColOne {
-  top: 99px;
-  left: 520px;
+  top: 18px;
+  left: 174px;
 }
 
 .strikeColTwo {
-  top: 99px;
-  left: 629px;
+  top: 22px;
+  left: 281px;
 }
 
 .strikeColThree {
-  top: 99px;
-  left: 737px;
+  top: 22px;
+  left: 389px;
 }
 
 .strikeDiagOne{
-  top: 111px;
-  left: 499px;
+  top: 38px;
+  left: 158px;
   width: 370px;
   -ms-transform-origin: top left;
   -webkit-transform-origin: top left;
@@ -252,8 +252,8 @@ body {
 }
 
 .strikeDiagTwo{
-  top: 378px;
-  left: 499px;
+  top: 299px;
+  left: 153px;
   width: 370px
   -ms-transform-origin: top left;
   -webkit-transform-origin: top left;

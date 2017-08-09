@@ -58,7 +58,22 @@ const gameLogic = {
 
     $('.strikeDiag').remove();
 
-    gameLogic.playerOne = true;
+    $('.strikeVert').remove();
+
+    gameLogic.highlightSwitch();
+  },
+
+  highlightSwitch: function (){
+    gameLogic.playerOne = false;
+    gameLogic.playerTwo = true;
+    if (gameLogic.playerOne){
+      $('#scoreContainerPlayerOne').addClass('highlight');
+      $('#scoreContainerPlayerTwo').removeClass('highlight');
+    }
+    else {
+      $('#scoreContainerPlayerTwo').addClass('highlight');
+      $('#scoreContainerPlayerOne').removeClass('highlight');
+    }
   },
 
   resetPlayerOne: function (){
@@ -77,7 +92,7 @@ const gameLogic = {
       gameLogic.updateScore();
       // gameLogic.resetBoard();
       let strikeOut = $('<div class="strike strikeRowOne"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareOne div').is('.wrap') && $('#squareTwo div').is('.wrap') && $('#squareThree div').is('.wrap')){
@@ -85,7 +100,7 @@ const gameLogic = {
       gameLogic.updateScore();
       // gameLogic.resetBoard();
       let strikeOut = $('<div class="strike strikeRowOne"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
   },
@@ -95,14 +110,14 @@ const gameLogic = {
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strike strikeRowTwo"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareFour div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareSix div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strike strikeRowTwo"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
   },
@@ -112,14 +127,14 @@ const gameLogic = {
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strike strikeRowThree"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareSeven div').is('.wrap') && $('#squareEight div').is('.wrap') && $('#squareNine div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strike strikeRowThree"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
   },
@@ -129,14 +144,14 @@ const gameLogic = {
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeVert strikeColOne"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareOne div').is('.wrap') && $('#squareFour div').is('.wrap') && $('#squareSeven div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeVert strikeColOne"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
   },
@@ -146,14 +161,14 @@ const gameLogic = {
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeVert strikeColTwo"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareTwo div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareEight div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeVert strikeColTwo"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
 
     }
@@ -164,14 +179,14 @@ const gameLogic = {
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeVert strikeColThree"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareThree div').is('.wrap') && $('#squareSix div').is('.wrap') && $('#squareNine div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeVert strikeColThree"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
   },
@@ -181,14 +196,14 @@ const gameLogic = {
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeDiag strikeDiagOne"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareOne div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareNine div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeDiag strikeDiagOne"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
   },
@@ -198,14 +213,14 @@ const gameLogic = {
       console.log(`Player One Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeDiag strikeDiagTwo"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareThree div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareSeven div').is('.wrap')){
       console.log(`Player Two Wins!`);
       gameLogic.updateScore();
       let strikeOut = $('<div class="strikeDiag strikeDiagTwo"><div>')
-      $('body').append(strikeOut);
+      $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
   },
@@ -224,7 +239,7 @@ const gameLogic = {
 
   divClicked: function (){
     gameLogic.movesCount += 1;
-    
+
     if (gameLogic.movesCount === 9){
 
       // adds # and string to the end of url to call box
@@ -275,16 +290,17 @@ const gameLogic = {
 $(document).ready(function () {
   //will alternate between players.
   $('#scoreContainerPlayerTwo').on('click', function (){
-    gameLogic.playerOne = false;
-    gameLogic.playerTwo = true;
-    if (gameLogic.playerOne){
-      $('#scoreContainerPlayerOne').addClass('highlight');
-      $('#scoreContainerPlayerTwo').removeClass('highlight');
-    }
-    else {
-      $('#scoreContainerPlayerTwo').addClass('highlight');
-      $('#scoreContainerPlayerOne').removeClass('highlight');
-    }
+    gameLogic.highlightSwitch();
+    // gameLogic.playerOne = false;
+    // gameLogic.playerTwo = true;
+    // if (gameLogic.playerOne){
+    //   $('#scoreContainerPlayerOne').addClass('highlight');
+    //   $('#scoreContainerPlayerTwo').removeClass('highlight');
+    // }
+    // else {
+    //   $('#scoreContainerPlayerTwo').addClass('highlight');
+    //   $('#scoreContainerPlayerOne').removeClass('highlight');
+    // }
   });
 
   $('#scoreContainerPlayerOne').on('click', function (){

@@ -327,6 +327,7 @@ body {
   width: 100px;
   height: 100px;
   position: relative;
+  /*background-color: black;*/
 }
 
 /*first span*/
@@ -549,3 +550,40 @@ body {
 
 /*end of pop up*/
 /*//////////////////////////////////////////*/
+
+/*///////////////////////////////////////*/
+/*shaking icons starts here*/
+#crossIcon:hover {
+  -webkit-animation-name: shake;
+  -webkit-animation-duration: 1s;
+  animation-name: shake;
+  animation-duration: 1s;
+}
+
+.wrap:hover {
+  -webkit-animation-name: shake;
+  -webkit-animation-duration: 1s;
+  animation-name: shake;
+  animation-duration: 1s;
+}
+
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(5px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-7px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(7px, 0, 0);
+  }
+}
+/*shaking icons ends here*/
+/*///////////////////////////////////////*/

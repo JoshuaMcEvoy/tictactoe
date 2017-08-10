@@ -4,19 +4,42 @@ const gameLogic = {
   playerTwo: false,
   playerOneScore: 0,
   playerTwoScore: 0,
-  movesCount: 1,
+  movesCount: 0,
   gameInProgress: true,
   swooshAudio: $('#swooshAudio')[0],
+  gamePlayers: 2,
+  gameZones: [['#squareThree'],
+              ['#squareTwo', '#squareFour', '#squareSix', '#squareEight'],
+              ['#squareOne', '#squareThree', '#squareSeven', '#squareNine']
+            ],
 
+  randomRangeArrayOne: function (max, min){
+    return parseInt(Math.random() * (max - min) + min);
+  },
+
+  setDifficulty: function (){
+    if (gameLogic.gamePlayers === 2){
+      gameLogic.gamePlayers = 1;
+      $('#difficulty').removeClass('button');
+      $('#difficulty').addClass('buttonHard');
+      $('#difficulty').attr('value', 'Easy');
+    }
+    else if (gameLogic.gamePlayers === 1){
+      gameLogic.gamePlayers = 2;
+      $('#difficulty').removeClass('buttonHard');
+      $('#difficulty').addClass('button');
+      $('#difficulty').attr('value', 'Player with friend');
+    }
+  },
 
   winnerScreen: function (){
     if (!gameLogic.playerOne){
-
+      gameLogic.updateScore();
       // adds # and string to the end of url to call box
       window.location.hash='winnerX';
     }
     else{
-
+      gameLogic.updateScore();
       // adds # and string to the end of url to call box
       window.location.hash='winnerO';
     }
@@ -93,7 +116,7 @@ const gameLogic = {
   checkRowOne: function () {
     if ($('#squareOne div').is('#crossIcon') && $('#squareTwo div').is('#crossIcon') && $('#squareThree div').is('#crossIcon')){
       gameLogic.gameInProgress = false;
-      gameLogic.updateScore();
+
       // gameLogic.resetBoard();
       let strikeOut = $('<div class="strike strikeRowOne"><div>')
       $('.gameBoard').append(strikeOut);
@@ -101,7 +124,7 @@ const gameLogic = {
     }
     else if ($('#squareOne div').is('.wrap') && $('#squareTwo div').is('.wrap') && $('#squareThree div').is('.wrap')){
       gameLogic.gameInProgress = false;
-      gameLogic.updateScore();
+
       // gameLogic.resetBoard();
       let strikeOut = $('<div class="strike strikeRowOne"><div>')
       $('.gameBoard').append(strikeOut);
@@ -112,14 +135,14 @@ const gameLogic = {
   checkRowTwo: function () {
     if ($('#squareFour div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSix div').is('#crossIcon')){
       gameLogic.gameInProgress = false;
-      gameLogic.updateScore();
+
       let strikeOut = $('<div class="strike strikeRowTwo"><div>')
       $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareFour div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareSix div').is('.wrap')){
       gameLogic.gameInProgress = false;
-      gameLogic.updateScore();
+
       let strikeOut = $('<div class="strike strikeRowTwo"><div>')
       $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
@@ -128,14 +151,14 @@ const gameLogic = {
 
   checkRowThree: function () {
     if ($('#squareSeven div').is('#crossIcon') && $('#squareEight div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
-      gameLogic.updateScore();
+
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strike strikeRowThree"><div>')
       $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareSeven div').is('.wrap') && $('#squareEight div').is('.wrap') && $('#squareNine div').is('.wrap')){
-      gameLogic.updateScore();
+
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strike strikeRowThree"><div>')
       $('.gameBoard').append(strikeOut);
@@ -145,14 +168,12 @@ const gameLogic = {
 
   checkColOne: function () {
     if ($('#squareOne div').is('#crossIcon') && $('#squareFour div').is('#crossIcon') && $('#squareSeven div').is('#crossIcon')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeVert strikeColOne"><div>')
       $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareOne div').is('.wrap') && $('#squareFour div').is('.wrap') && $('#squareSeven div').is('.wrap')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeVert strikeColOne"><div>')
       $('.gameBoard').append(strikeOut);
@@ -162,14 +183,12 @@ const gameLogic = {
 
   checkColTwo: function () {
     if ($('#squareTwo div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareEight div').is('#crossIcon')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeVert strikeColTwo"><div>')
       $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareTwo div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareEight div').is('.wrap')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeVert strikeColTwo"><div>')
       $('.gameBoard').append(strikeOut);
@@ -180,14 +199,12 @@ const gameLogic = {
 
   checkColThree: function () {
     if ($('#squareThree div').is('#crossIcon') && $('#squareSix div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeVert strikeColThree"><div>')
       $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareThree div').is('.wrap') && $('#squareSix div').is('.wrap') && $('#squareNine div').is('.wrap')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeVert strikeColThree"><div>')
       $('.gameBoard').append(strikeOut);
@@ -197,14 +214,12 @@ const gameLogic = {
 
   checkDiagOne: function () {
     if ($('#squareOne div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareNine div').is('#crossIcon')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeDiag strikeDiagOne"><div>')
       $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareOne div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareNine div').is('.wrap')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeDiag strikeDiagOne"><div>')
       $('.gameBoard').append(strikeOut);
@@ -214,14 +229,12 @@ const gameLogic = {
 
   checkDiagTwo: function () {
     if ($('#squareThree div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSeven div').is('#crossIcon')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeDiag strikeDiagTwo"><div>')
       $('.gameBoard').append(strikeOut);
       setTimeout(gameLogic.winnerScreen, 1000);
     }
     else if ($('#squareThree div').is('.wrap') && $('#squareFive div').is('.wrap') && $('#squareSeven div').is('.wrap')){
-      gameLogic.updateScore();
       gameLogic.gameInProgress = false;
       let strikeOut = $('<div class="strikeDiag strikeDiagTwo"><div>')
       $('.gameBoard').append(strikeOut);
@@ -231,67 +244,151 @@ const gameLogic = {
 
   winnerCheck: function (){
     //Checks through logic to see if three matches are together
-    gameLogic.checkRowOne();
-    gameLogic.checkRowTwo();
-    gameLogic.checkRowThree();
-    gameLogic.checkColOne();
-    gameLogic.checkColTwo();
-    gameLogic.checkColThree();
-    gameLogic.checkDiagOne();
-    gameLogic.checkDiagTwo();
+    if (gameLogic.movesCount === 9){
+      // adds # and string to the end of url to call box
+      window.location.hash='draw';
+      gameLogic.playerOne = true;
+      gameLogic.movesCount = 0;
+    }
+
+    else {
+      gameLogic.checkRowOne();
+      gameLogic.checkRowTwo();
+      gameLogic.checkRowThree();
+      gameLogic.checkColOne();
+      gameLogic.checkColTwo();
+      gameLogic.checkColThree();
+      gameLogic.checkDiagOne();
+      gameLogic.checkDiagTwo();
+    }
   },
 
-  divClicked: function (){
+  AIPlayer: function (el){
+    console.log('AI working');
+    ///////////////////////////////////////////
+    ////      START AI FUNCTION            ////
+    ///////////////////////////////////////////
 
-    if (!gameLogic.gameInProgress){
-      //stops user from clicking board
-    }
-    else if (gameLogic.movesCount === 9){
-    // adds # and string to the end of url to call box
-    window.location.hash='draw';
-    gameLogic.playerOne = true;
-    gameLogic.movesCount = 0;
+    let randomFirst = gameLogic.randomRangeArrayOne(3, 0);
+    let randomSecond = gameLogic.randomRangeArrayOne(4, 0);
+    let randomId = gameLogic.gameZones[parseInt(randomFirst)][parseInt(randomSecond)];
+    console.log(`randomId = ${randomId}`);
 
+    if (randomId === undefined){
+      // gameLogic.AIPlayer(el);
+      gameLogic.AIPlayer();
+      gameLogic.winnerCheck();
     }
-    // if this has a child element then log
-    else if ($(this)[0].childElementCount === 1){
-      console.log(`already picked`);
-    }
-
-    else if (gameLogic.playerOne){
-      gameLogic.movesCount += 1;
-      let crossDiv = $('<div></div>');
-      crossDiv.attr('id','crossIcon');
-      let spanDiv = $('<span></span>');
-      $(this).append(crossDiv);
-      $(crossDiv).append(spanDiv.clone());
-      $(crossDiv).append(spanDiv.clone());
-      gameLogic.swooshAudio.play();
-      gameLogic.playerOne = false;
-      gameLogic.resetPlayerTwo();
+    else if ($(randomId)[0].childElementCount === 1) {
+      gameLogic.AIPlayer();
       gameLogic.winnerCheck();
     }
     else {
-      gameLogic.movesCount += 1;
-      // create divs and applies class/ids to make and animate circles
       let circleDiv = $('<div></div>');
       circleDiv.attr('class','wrap');
       let spanDiv = $('<div></div>');
       spanDiv.attr('class', 'circle');
-      $(this).append(circleDiv);
+      $(randomId).append(circleDiv);
       $(circleDiv).append(spanDiv.clone());
       //changes playerTwo to false so will go back to playerOne's turn.
       gameLogic.playerTwo = false;
       gameLogic.resetPlayerOne();
       gameLogic.winnerCheck();
+      gameLogic.movesCount += 1;
     }
-    if (gameLogic.playerOne){
-      $('#scoreContainerPlayerOne').addClass('highlight');
-      $('#scoreContainerPlayerTwo').removeClass('highlight');
+
+    ///////////////////////////////////////////
+    ////        END AI FUNCTION            ////
+    ///////////////////////////////////////////
+  },
+
+  runAI: function (el){
+    gameLogic.AIPlayer(el)
+  },
+
+  divClicked: function (){
+
+    if (gameLogic.gamePlayers === 1 && gameLogic.gameInProgress === true){
+
+      if (gameLogic.playerTwo){
+        setTimeout(gameLogic.runAI, 1100);
+      }
+      else if (gameLogic.playerOne){
+        gameLogic.movesCount += 1;
+        let crossDiv = $('<div></div>');
+        crossDiv.attr('id','crossIcon');
+        let spanDiv = $('<span></span>');
+        $(this).append(crossDiv);
+        $(crossDiv).append(spanDiv.clone());
+        $(crossDiv).append(spanDiv.clone());
+        // gameLogic.swooshAudio.play();
+        gameLogic.playerOne = false;
+        gameLogic.resetPlayerTwo();
+        gameLogic.winnerCheck();
+        gameLogic.divClicked();
+        if (gameLogic.playerOne){
+          $('#scoreContainerPlayerOne').addClass('highlight');
+          $('#scoreContainerPlayerTwo').removeClass('highlight');
+        }
+        else {
+          $('#scoreContainerPlayerTwo').addClass('highlight');
+          $('#scoreContainerPlayerOne').removeClass('highlight');
+        }
+      }
     }
-    else {
-      $('#scoreContainerPlayerTwo').addClass('highlight');
-      $('#scoreContainerPlayerOne').removeClass('highlight');
+
+    else if (gameLogic.gamePlayers === 2){
+
+      if (!gameLogic.gameInProgress){
+        //stops user from clicking board
+      }
+      // else if (gameLogic.movesCount === 9){
+      // // adds # and string to the end of url to call box
+      // window.location.hash='draw';
+      // gameLogic.playerOne = true;
+      // gameLogic.movesCount = 0;
+      //
+      // }
+      // if this has a child element then log
+      else if ($(this)[0].childElementCount === 1){
+        console.log(`already picked`);
+      }
+
+      else if (gameLogic.playerOne){
+        gameLogic.movesCount += 1;
+        let crossDiv = $('<div></div>');
+        crossDiv.attr('id','crossIcon');
+        let spanDiv = $('<span></span>');
+        $(this).append(crossDiv);
+        $(crossDiv).append(spanDiv.clone());
+        $(crossDiv).append(spanDiv.clone());
+        // gameLogic.swooshAudio.play();
+        gameLogic.playerOne = false;
+        gameLogic.resetPlayerTwo();
+        gameLogic.winnerCheck();
+      }
+      else {
+        gameLogic.movesCount += 1;
+        // create divs and applies class/ids to make and animate circles
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $(this).append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        //changes playerTwo to false so will go back to playerOne's turn.
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+      }
+      if (gameLogic.playerOne){
+        $('#scoreContainerPlayerOne').addClass('highlight');
+        $('#scoreContainerPlayerTwo').removeClass('highlight');
+      }
+      else {
+        $('#scoreContainerPlayerTwo').addClass('highlight');
+        $('#scoreContainerPlayerOne').removeClass('highlight');
+      }
     }
   }
 };
@@ -308,6 +405,7 @@ $(document).ready(function () {
     else {
       $('#scoreContainerPlayerTwo').addClass('highlight');
       $('#scoreContainerPlayerOne').removeClass('highlight');
+      gameLogic.divClicked();
     }
   });
 
@@ -315,13 +413,8 @@ $(document).ready(function () {
     gameLogic.highlightSwitch();
   });
 
-
-  if (gameLogic.playerOne){
-    $('#scoreContainerPlayerOne').addClass('highlight');
-  }
-  else {
-    $('#scoreContainerPlayerTwo').addClass('highlight');
-  }
+  //sets the playerOne to highligthed so it can be toggled later.
+  $('#scoreContainerPlayerOne').addClass('highlight');
 
   //reload the whole page, resets counts and sets playerOne to true.
   $('#restartButton').on('click', function(){
@@ -334,6 +427,8 @@ $(document).ready(function () {
 
   //clears board when close button on pop up is clicked.
   $('.close').on('click', gameLogic.resetBoard);
+
+  $('#difficulty').on('click', gameLogic.setDifficulty);
 
 
 });

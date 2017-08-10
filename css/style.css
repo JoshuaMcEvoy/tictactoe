@@ -100,7 +100,21 @@ body {
   background-color: #63ABE0;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  color: #F2EBD3;
+  color: #545454;
+  border: none;
+  height: 34px;
+  min-width: 150px;
+  border-radius: 24px;
+  line-height: 33px;
+  cursor: pointer;
+
+}
+/*red #F44336*/
+.buttonHard {
+  background-color: #4CAF50;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #545454;
   border: none;
   height: 34px;
   min-width: 150px;

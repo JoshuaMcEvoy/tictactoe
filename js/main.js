@@ -6,7 +6,9 @@ const gameLogic = {
   playerTwoScore: 0,
   movesCount: 0,
   gameInProgress: true,
-  swooshAudio: $('#swooshAudio')[0],
+  cornerFlag: 0,
+  plusFlag: 0,
+  // swooshAudio: $('#swooshAudio')[0],
   gamePlayers: 1,
   gameZones: [['#squareThree'],
               ['#squareTwo', '#squareFour', '#squareSix', '#squareEight'],
@@ -23,6 +25,7 @@ const gameLogic = {
       $('#difficulty').removeClass('button');
       $('#difficulty').addClass('buttonEasy');
       $('#difficulty').attr('value', 'Easy');
+      gameLogic.resetBoard();
 
     }
     else if (gameLogic.gamePlayers === 2){
@@ -30,12 +33,14 @@ const gameLogic = {
       $('#difficulty').removeClass('buttonEasy');
       $('#difficulty').addClass('buttonHard');
       $('#difficulty').attr('value', 'Hard');
+      gameLogic.resetBoard();
     }
     else if (gameLogic.gamePlayers === 3){
       gameLogic.gamePlayers = 1;
       $('#difficulty').removeClass('buttonHard');
       $('#difficulty').addClass('button');
       $('#difficulty').attr('value', 'Player with friend');
+      gameLogic.resetBoard();
     }
 
   },
@@ -45,11 +50,13 @@ const gameLogic = {
       gameLogic.updateScore();
       // adds # and string to the end of url to call box
       window.location.hash='winnerX';
+      gameLogic.gameInProgress = false;
     }
     else{
       gameLogic.updateScore();
       // adds # and string to the end of url to call box
       window.location.hash='winnerO';
+      gameLogic.gameInProgress = false;
     }
   },
 
@@ -90,10 +97,12 @@ const gameLogic = {
     gameLogic.playerOne = true;
     gameLogic.playerTwo = false;
     if (gameLogic.playerOne){
+      // gameLogic.resetBoard();
       $('#scoreContainerPlayerOne').addClass('highlight');
       $('#scoreContainerPlayerTwo').removeClass('highlight');
     }
     else {
+      // gameLogic.resetBoard();
       $('#scoreContainerPlayerTwo').addClass('highlight');
       $('#scoreContainerPlayerOne').removeClass('highlight');
     }
@@ -240,14 +249,8 @@ const gameLogic = {
 
   winnerCheck: function (){
     //Checks through logic to see if three matches are together
-    if (gameLogic.movesCount === 9){
-      // adds # and string to the end of url to call box
-      window.location.hash='draw';
-      gameLogic.playerOne = true;
-      gameLogic.movesCount = 0;
-    }
 
-    else {
+    if (gameLogic.movesCount <= 9){
       gameLogic.checkRowOne();
       gameLogic.checkRowTwo();
       gameLogic.checkRowThree();
@@ -256,6 +259,13 @@ const gameLogic = {
       gameLogic.checkColThree();
       gameLogic.checkDiagOne();
       gameLogic.checkDiagTwo();
+    }
+    else if (gameLogic.movesCount === 9){
+      // adds # and string to the end of url to call box
+      window.location.hash='draw';
+      gameLogic.playerOne = true;
+      gameLogic.movesCount = 0;
+      gameLogic.gameInProgress = false;
     }
   },
 
@@ -270,12 +280,12 @@ const gameLogic = {
     let randomId = gameLogic.gameZones[parseInt(randomFirst)][parseInt(randomSecond)];
     console.log(`randomId = ${randomId}`);
 
-    if (randomId === undefined){
+    if (randomId === undefined && gameLogic.gameInProgress === true){
       // gameLogic.AIPlayer(el);
       gameLogic.AIPlayer();
       gameLogic.winnerCheck();
     }
-    else if ($(randomId)[0].childElementCount === 1) {
+    else if ($(randomId)[0].childElementCount === 1 && gameLogic.gameInProgress === true) {
       gameLogic.AIPlayer();
       gameLogic.winnerCheck();
     }
@@ -299,7 +309,109 @@ const gameLogic = {
   },
 
   AIPlayerHard: function (el){
-    if ( ($('#squareFive')[0].childElementCount === 0) ){
+    // debugger;
+
+    //////////////////////////Start of second move
+    //put in && flag is less than two
+    if ( $('#squareTwo')[0].childElementCount === 1 || $('#squareFour')[0].childElementCount === 1 || $('#squareSix')[0].childElementCount === 1 || $('#squareEight')[0].childElementCount === 1 ) {
+      if ($('#squareTwo')[0].childElementCount === 1){
+        // console.log(`place corner`);
+        gameLogic.plusFlag++;
+      }
+      if ($('#squareFour')[0].childElementCount === 1){
+        // console.log(`place corner`);
+        gameLogic.plusFlag++;
+      }
+      if ($('#squareSix')[0].childElementCount === 1){
+        // console.log(`place corner`);
+        gameLogic.plusFlag++;
+      }
+      if ($('#squareEight')[0].childElementCount === 1 ){
+        // console.log(`place corner`);
+        gameLogic.plusFlag++;
+        // must break on this line
+      }
+    }
+
+    else if ( $('#squareOne')[0].childElementCount === 1 || $('#squareThree')[0].childElementCount === 1 || $('#squareSeven')[0].childElementCount === 1 || $('#squareNine')[0].childElementCount === 1 ){
+      if ($('#squareOne')[0].childElementCount === 1){
+        // console.log(`place plus`);
+        gameLogic.cornerFlag++;
+      }
+      if ($('#squareThree')[0].childElementCount === 1){
+        // console.log(`place plus`);
+        gameLogic.cornerFlag++;
+      }
+      if ($('#squareSeven')[0].childElementCount === 1){
+        // console.log(`place plus`);
+        gameLogic.cornerFlag++;
+      }
+      if ($('#squareNine')[0].childElementCount === 1 ){
+        gameLogic.cornerFlag++;
+      }
+    }
+
+
+
+    if (gameLogic.cornerFlag >= 2){
+      if ( $('#squareOne')[0].childElementCount === 1 && $('#squareThree')[0].childElementCount === 1 && $('#squareTwo')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareTwo').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ( $('#squareOne')[0].childElementCount === 1 && $('#squareSeven')[0].childElementCount === 1 && $('#squareFour')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareFour').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ( $('#squareThree')[0].childElementCount === 1 && $('#squareNine')[0].childElementCount === 1 && $('#squareSix')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareSix').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ( $('#squareSeven')[0].childElementCount === 1 && $('#squareNine')[0].childElementCount === 1 && $('#squareEight')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareEight').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else {
+        gameLogic.AIPlayer();
+      }
+    }
+    else if (gameLogic.plusFlag >= 2){
+      console.log(`plusFlag`);
+    }
+
+    //////////////////////////Start of first move
+    else if ( ($('#squareFive')[0].childElementCount === 0) ){
       //Zone One
       let circleDiv = $('<div></div>');
       circleDiv.attr('class','wrap');
@@ -317,16 +429,24 @@ const gameLogic = {
       //Zone Two
       let random = gameLogic.randomRangeArrayOne(4, 0)
       let randomId = gameLogic.gameZones[1][parseInt(random)];
-
       let circleDiv = $('<div></div>');
       circleDiv.attr('class','wrap');
       let spanDiv = $('<div></div>');
       spanDiv.attr('class', 'circle');
       $(randomId).append(circleDiv);
       $(circleDiv).append(spanDiv.clone());
+      gameLogic.playerTwo = false;
+      gameLogic.resetPlayerOne();
+      gameLogic.winnerCheck();
+      gameLogic.movesCount += 1;
+
+    }
+    //////////////////////////End of first move
+
+    else {
+      gameLogic.AIPlayer();
     }
 
-    // else if ()
   },
 
   runAI: function (el){
@@ -337,8 +457,8 @@ const gameLogic = {
     gameLogic.AIPlayerHard(el)
   },
 
-  divClicked: function (){
-
+  divClicked: function (el){
+    // debugger;
     //starts easy AI
     if (gameLogic.gamePlayers === 2 && gameLogic.gameInProgress === true){
 
@@ -405,13 +525,7 @@ const gameLogic = {
       if (!gameLogic.gameInProgress){
         //stops user from clicking board
       }
-      // else if (gameLogic.movesCount === 9){
-      // // adds # and string to the end of url to call box
-      // window.location.hash='draw';
-      // gameLogic.playerOne = true;
-      // gameLogic.movesCount = 0;
-      //
-      // }
+
       // if this has a child element then log
       else if ($(this)[0].childElementCount === 1){
         console.log(`already picked`);
@@ -462,13 +576,15 @@ $(document).ready(function () {
     gameLogic.playerOne = false;
     gameLogic.playerTwo = true;
     if (gameLogic.playerOne){
+      // gameLogic.resetBoard();
       $('#scoreContainerPlayerOne').addClass('highlight');
       $('#scoreContainerPlayerTwo').removeClass('highlight');
     }
     else {
+      // gameLogic.resetBoard();
       $('#scoreContainerPlayerTwo').addClass('highlight');
       $('#scoreContainerPlayerOne').removeClass('highlight');
-      gameLogic.divClicked();
+      gameLogic.divClicked(this);
     }
   });
 
@@ -492,6 +608,5 @@ $(document).ready(function () {
   $('.close').on('click', gameLogic.resetBoard);
 
   $('#difficulty').on('click', gameLogic.setDifficulty);
-
 
 });

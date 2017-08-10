@@ -6,13 +6,18 @@ body {
   font-size: 22px;
 }
 
+#difficulty {
+  margin-left: 18px;
+  margin-top: 19px;
+}
+
 #restartButton {
   margin-top: 19px;
-  margin-left: 209px;
+  margin-left: 212px;
 }
 
 #scoreContainerPlayerOne {
-  margin-left: 98px;
+  margin-left: 13px;
   cursor: pointer;
 }
 
@@ -109,9 +114,23 @@ body {
   cursor: pointer;
 
 }
-/*red #F44336*/
-.buttonHard {
+
+.buttonEasy {
   background-color: #4CAF50;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  color: #545454;
+  border: none;
+  height: 34px;
+  min-width: 150px;
+  border-radius: 24px;
+  line-height: 33px;
+  cursor: pointer;
+
+}
+
+.buttonHard {
+  background-color: #F44336;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   color: #545454;
@@ -147,7 +166,7 @@ body {
   display: inline-block;
   min-width: 170px;
   min-height: 35px;
-  margin-top: 18px;
+  margin-top: -1px;
   box-shadow: 0px 0px 3px #7D7D7D;
   background-color: white;
   text-align: center;

@@ -290,11 +290,9 @@ const gameLogic = {
     ///////////////////////////////////////////
     ////      START AI FUNCTION            ////
     ///////////////////////////////////////////
-    debugger;
     let randomFirst = gameLogic.randomRangeArrayOne(3, 0);
     let randomSecond = gameLogic.randomRangeArrayOne(4, 0);
     let randomId = gameLogic.gameZones[parseInt(randomFirst)][parseInt(randomSecond)];
-    console.log(`randomId = ${randomId}`);
 
     if (randomId === undefined && gameLogic.gameInProgress === true){
       // gameLogic.AIPlayer(el);
@@ -326,10 +324,13 @@ const gameLogic = {
   },
 
   AIPlayerHard: function (el){
-    // debugger;
-
+    debugger;
     //////////////////////////Start of second move
     //put in && flag is less than two
+
+    //////////////////////////////////////
+    ///   Start flags for positioning  ///
+    //////////////////////////////////////
     if ( $('#squareTwo')[0].childElementCount === 1 || $('#squareFour')[0].childElementCount === 1 || $('#squareSix')[0].childElementCount === 1 || $('#squareEight')[0].childElementCount === 1 ) {
       if ($('#squareTwo')[0].childElementCount === 1){
         // console.log(`place corner`);
@@ -350,7 +351,7 @@ const gameLogic = {
       }
     }
 
-    else if ( $('#squareOne')[0].childElementCount === 1 || $('#squareThree')[0].childElementCount === 1 || $('#squareSeven')[0].childElementCount === 1 || $('#squareNine')[0].childElementCount === 1 ){
+    if ( $('#squareOne')[0].childElementCount === 1 || $('#squareThree')[0].childElementCount === 1 || $('#squareSeven')[0].childElementCount === 1 || $('#squareNine')[0].childElementCount === 1 ){
       if ($('#squareOne')[0].childElementCount === 1){
         // console.log(`place plus`);
         gameLogic.cornerFlag++;
@@ -367,9 +368,13 @@ const gameLogic = {
         gameLogic.cornerFlag++;
       }
     }
+    //////////////////////////////////////
+    ///    End flags for positioning   ///
+    //////////////////////////////////////
 
-
-
+    //////////////////////////////////////
+    ///       Start of blockers        ///
+    //////////////////////////////////////
     if (gameLogic.cornerFlag >= 2){
       if ( $('#squareOne')[0].childElementCount === 1 && $('#squareThree')[0].childElementCount === 1 && $('#squareTwo')[0].childElementCount === 0 ){
         let circleDiv = $('<div></div>');
@@ -420,11 +425,238 @@ const gameLogic = {
         gameLogic.movesCount += 1;
       }
       else {
-        gameLogic.AIPlayer();
+        // let randomFirst = gameLogic.randomRangeArrayOne(3, 0);
+        let randomSecond = gameLogic.randomRangeArrayOne(4, 0);
+        let randomId = gameLogic.gameZones[1][parseInt(randomSecond)];
+
+          if ($(randomId)[0].childElementCount === 1 && gameLogic.gameInProgress === true) {
+            gameLogic.AIPlayer();
+            gameLogic.winnerCheck();
+          }
+          else if (gameLogic.gameInProgress === true){
+            let circleDiv = $('<div></div>');
+            circleDiv.attr('class','wrap');
+            let spanDiv = $('<div></div>');
+            spanDiv.attr('class', 'circle');
+            $(randomId).append(circleDiv);
+            $(circleDiv).append(spanDiv.clone());
+            //changes playerTwo to false so will go back to playerOne's turn.
+            // gameLogic.gameInProgress = false;
+            gameLogic.playerTwo = false;
+            gameLogic.resetPlayerOne();
+            gameLogic.winnerCheck();
+            gameLogic.movesCount += 1;
+          }
       }
     }
-    else if (gameLogic.plusFlag >= 2){
-      console.log(`plusFlag`);
+    else if (gameLogic.plusFlag){
+      if ($('#squareFive')[0].childElementCount === 0){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareFive').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareOne div').is('#crossIcon') && $('#squareTwo div').is('#crossIcon') && $('#squareThree')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareThree').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      // Double match blockers
+      else if ($('#squareOne div').is('#crossIcon') && $('#squareFour div').is('#crossIcon') && $('#squareSeven')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareSeven').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareTwo div').is('#crossIcon') && $('#squareThree div').is('#crossIcon') && $('#squareOne')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareOne').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareTwo div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareEight')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareEight').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareThree div').is('#crossIcon') && $('#squareSix div').is('#crossIcon') && $('#squareNine')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareNine').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareFour div').is('#crossIcon') && $('#squareSeven div').is('#crossIcon') && $('#squareOne')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareOne').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareFour div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSix')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareSix').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareFive div').is('#crossIcon') && $('#squareEight div').is('#crossIcon') && $('#squareTwo')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareTwo').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareFive div').is('#crossIcon') && $('#squareSix div').is('#crossIcon') && $('#squareFour')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareFour').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareSix div').is('#crossIcon') && $('#squareNine div').is('#crossIcon') && $('#squareThree')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareThree').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareSeven div').is('#crossIcon') && $('#squareEight div').is('#crossIcon') && $('#squareNine')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareNine').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareEight div').is('#crossIcon') && $('#squareNine div').is('#crossIcon') && $('#squareSeven')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareSeven').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareOne div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareNine')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareNine').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareThree div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareSeven')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareSeven').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareSeven div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareThree')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareThree').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+      else if ($('#squareNine div').is('#crossIcon') && $('#squareFive div').is('#crossIcon') && $('#squareOne')[0].childElementCount === 0 ){
+        let circleDiv = $('<div></div>');
+        circleDiv.attr('class','wrap');
+        let spanDiv = $('<div></div>');
+        spanDiv.attr('class', 'circle');
+        $('#squareOne').append(circleDiv);
+        $(circleDiv).append(spanDiv.clone());
+        gameLogic.playerTwo = false;
+        gameLogic.resetPlayerOne();
+        gameLogic.winnerCheck();
+        gameLogic.movesCount += 1;
+      }
+
+
     }
 
     //////////////////////////Start of first move
@@ -475,7 +707,6 @@ const gameLogic = {
   },
 
   divClicked: function (el){
-    // debugger;
     //starts easy AI
 
     if (gameLogic.gamePlayers === 2 && gameLogic.gameInProgress === true){

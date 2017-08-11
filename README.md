@@ -4,10 +4,13 @@
 
 This is a simple Tic Tac Toe game that has two functions where you can play against a friend or against the AI.
 
+Rules:
+The object of Tic Tac Toe is to get three in a row. You play on the three by three game board. The first player is known as X and the second is O. Players alternate placing Xs and Os on the game board until either opponent has three in a row or all nine squares are filled resulting in a draw.
+
 Known bugs:
 1: When the game is won on the last move it will display as a draw.
 2: On 'play with friend' mode, you can switch player back to keep using the same icon.
-3: If draw on 'AIEasy' mode the AI will continue to loop. 
+3: If draw on 'AIEasy' mode the AI will continue to loop.
 
 Link to live site: https://joshuamcevoy.github.io/tictactoe/
 

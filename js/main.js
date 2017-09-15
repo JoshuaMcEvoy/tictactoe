@@ -450,6 +450,18 @@ const gameLogic = {
       }
     }
     else if (gameLogic.plusFlag){
+      // if ($('#squareFive')[0].childElementCount === 1 && gameLogic.movesCount === 2){
+      //   let circleDiv = $('<div></div>');
+      //   circleDiv.attr('class','wrap');
+      //   let spanDiv = $('<div></div>');
+      //   spanDiv.attr('class', 'circle');
+      //   $('#squareThree').append(circleDiv);
+      //   $(circleDiv).append(spanDiv.clone());
+      //   gameLogic.playerTwo = false;
+      //   gameLogic.resetPlayerOne();
+      //   gameLogic.winnerCheck();
+      //   gameLogic.movesCount += 1;
+      // }
       if ($('#squareFive')[0].childElementCount === 0){
         let circleDiv = $('<div></div>');
         circleDiv.attr('class','wrap');
@@ -708,7 +720,7 @@ const gameLogic = {
 
   divClicked: function (el){
     //starts easy AI
-
+    // debugger;
     if (gameLogic.gamePlayers === 2 && gameLogic.gameInProgress === true){
 
       if (gameLogic.playerTwo){
@@ -816,8 +828,8 @@ const gameLogic = {
         $('#scoreContainerPlayerOne').removeClass('highlight');
       }
     }
-  }
-};
+    }
+  };
 
 $(document).ready(function () {
   //will alternate between players.

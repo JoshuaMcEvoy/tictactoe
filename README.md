@@ -11,6 +11,8 @@ Known bugs:
 1: When the game is won on the last move it will display as a draw.
 2: On 'play with friend' mode, you can switch player back to keep using the same icon.
 3: If draw on 'AIEasy' mode the AI will continue to loop.
+4: If win comes with two directions the score increases by two.
+5: Need to reset playerOne to true when HardAI game is finished. 
 
 Link to live site: https://joshuamcevoy.github.io/tictactoe/
 
